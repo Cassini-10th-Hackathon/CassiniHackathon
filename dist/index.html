@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Prototype - PostHog Testing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
+        }
+
+        .btn-tertiary {
+            background: #ed8936;
+            color: white;
+        }
+
+        .btn-tertiary:hover {
+            background: #dd6b20;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(237, 137, 54, 0.4);
+        }
+
+        .info {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 5px;
+        }
+
+        .info p {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 0.9em;
+        }
+
+        .info strong {
+            color: #2d3748;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e6fffa;
+            border-radius: 5px;
+            text-align: center;
+            color: #234e52;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hackathon Prototype</h1>
+        <p class="subtitle">Testing PostHog Analytics Integration</p>
+
+        <div class="button-group">
+            <button class="btn-primary" id="cta-button">
+                Get Started
+            </button>
+
+            <button class="btn-secondary" id="feature-button">
+                Explore Features
+            </button>
+
+            <button class="btn-tertiary" id="contact-button">
+                Contact Us
+            </button>
+        </div>
+
+        <div class="status" id="status">
+            PostHog is tracking your interactions!
+        </div>
+
+        <div class="info">
+            <p><strong>What's being tracked?</strong></p>
+            <p>Every button click is automatically sent to PostHog. You can see:</p>
+            <ul style="margin-top: 10px; margin-left: 20px; line-height: 1.8;">
+                <li>Which buttons are clicked most</li>
+                <li>User engagement patterns</li>
+                <li>Session recordings (if enabled)</li>
+                <li>Custom events and properties</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // PostHog Configuration
+        !function (t, e) { var o, n, p, r; e.__SV || (window.posthog = e, e._i = [], e.init = function (i, s, a) { function g(t, e) { var o = e.split("."); 2 == o.length && (t = t[o[0]], e = o[1]), t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } } (p = t.createElement("script")).type = "text/javascript", p.async = !0, p.src = s.api_host + "/static/array.js", (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(p, r); var u = e; for (void 0 !== a ? u = e[a] = [] : a = "posthog", u.people = u.people || [], u.toString = function (t) { var e = "posthog"; return "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e }, u.people.toString = function () { return u.toString(1) + ".people (stub)" }, o = "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId".split(" "), n = 0; n < o.length; n++)g(u, o[n]); e._i.push([i, s, a]) }, e.__SV = 1) }(document, window.posthog || []);
+
+        // Initialize PostHog
+        // REPLACE WITH YOUR PROJECT API KEY AND HOST
+        posthog.init('phc_XRP6zVYGkAWVUFKHZn7KoOS2rujPRW6YG7cVwqkG1hM', {
+            api_host: 'https://app.posthog.com',
+            // Enable session recordings to see user interactions
+            session_recording: {
+                recordCrossOriginIframes: true,
+            },
+            // Automatically capture pageviews and clicks
+            autocapture: true
+        });
+
+        // Custom button tracking with additional properties
+        document.getElementById('cta-button').addEventListener('click', function () {
+            posthog.capture('cta_button_clicked', {
+                button_text: 'Get Started',
+                button_type: 'primary',
+                location: 'main_page'
+            });
+            showStatus('Get Started button tracked!');
+        });
+
+        document.getElementById('feature-button').addEventListener('click', function () {
+            posthog.capture('feature_button_clicked', {
+                button_text: 'Explore Features',
+                button_type: 'secondary',
+                location: 'main_page'
+            });
+            showStatus('Explore Features button tracked!');
+        });
+
+        document.getElementById('contact-button').addEventListener('click', function () {
+            posthog.capture('contact_button_clicked', {
+                button_text: 'Contact Us',
+                button_type: 'tertiary',
+                location: 'main_page'
+            });
+            showStatus('Contact Us button tracked!');
+        });
+
+        function showStatus(message) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.style.background = '#c6f6d5';
+
+            setTimeout(() => {
+                status.textContent = 'PostHog is tracking your interactions!';
+                status.style.background = '#e6fffa';
+            }, 2000);
+        }
+
+        // Track page load
+        posthog.capture('prototype_page_loaded', {
+            timestamp: new Date().toISOString()
+        });
+    </script>
+</body>
+
+</html>
